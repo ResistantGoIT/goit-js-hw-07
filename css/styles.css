@@ -1,0 +1,15 @@
+/*========================== Task 3 ===================================*/
+#gallery {
+    display: flex;
+}
+#gallery li {
+    list-style: none;
+}
+#gallery li img{
+    width: 600px;
+    height: 400px;
+}
+#gallery li:not(:last-child) {
+    margin-right: 20px;
+}
+/*=====================================================================*/
