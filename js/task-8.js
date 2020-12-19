@@ -1,33 +1,47 @@
-{
-  /*<div id="controls">
-    <input type="number" min="0" max="100" step="1" />
-    <button type="button" data-action="render">Создать</button>
-    <button type="button" data-action="destroy">Очистить</button>
-</div>
-
-<div id="boxes"></div>*/
-}
-
+// блок 8 задания
 const controls = document.querySelector("#controls");
-console.log(controls);
+
+// поле ввода количества квадратов
 const inputRef = document.querySelector("#controls > input");
-console.log(inputRef);
+  
+
+// кнопка создания блоков
 const buttonRender = document.querySelector('button[data-action="render"]');
-console.log(buttonRender);
+
+// кнопка удаления квадратов
 const buttonDestroy = document.querySelector('button[data-action="destroy"]');
-console.log(buttonDestroy);
 
-let box;
+// блок появления квадратов
+const box = document.querySelector('#boxes');
+
+// функция создания квадратов
 function createBoxes(amount) {
-  let box = document.createElement("div");
-  box.style.width = 30 + "px";
-  return box;
+  // функция получения цвета
+  const getColor =  () => `rgb(
+    ${Math.floor(Math.random() * 255)},
+    ${Math.floor(Math.random() * 255)},
+    ${Math.floor(Math.random() * 255)}
+  )`
+    for (let i = 0; i < amount; i += 1) {
+      let square = document.createElement("div");
+      square.style.width = `${30 + i * 10}px`;
+      square.style.height = `${30 + i * 10}px`;
+      square.style.backgroundColor = `${getColor()}`;
+      box.style.display = `flex`;
+      box.append(square);
+  }
+  
 }
-console.log(createBoxes(1));
 
-controls.insertAdjacentElement("beforeend", createBoxes());
+const createValue = () => createBoxes(inputRef.value);
 
-function destroyBoxes() {}
 
-buttonRender.addEventListener("click", createBoxes);
+// функция удаления квадратов
+function destroyBoxes() {
+  inputRef.value = '';
+  box.innerHTML = '';
+}
+
+buttonRender.addEventListener("click", createValue);
 buttonDestroy.addEventListener("click", destroyBoxes);
+
